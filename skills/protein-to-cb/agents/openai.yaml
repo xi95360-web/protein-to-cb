@@ -1,0 +1,18 @@
+interface:
+  display_name: "Protein to CB"
+  short_description: "Find PDB conformations and run sequence-aware CB scoring"
+  default_prompt: "Use $protein-to-cb to find suitable structures and assess the requested protein variants with CB."
+
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "pdbank"
+      description: "Public RCSB/UniProt discovery, structure download and explicit variant panels"
+      transport: "stdio"
+    - type: "mcp"
+      value: "conformational_biasing"
+      description: "Validated structure-pair preparation and ProteinMPNN CB scoring"
+      transport: "stdio"
+
+policy:
+  allow_implicit_invocation: true

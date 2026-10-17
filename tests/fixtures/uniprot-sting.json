@@ -1,0 +1,296 @@
+{
+  "fixture_note": "Public UniProt STING name-search excerpt; retained only identity/sequence fields needed by offline tests. Full responses are preserved by live tools.",
+  "source": "https://rest.uniprot.org/uniprotkb/search",
+  "results": [
+    {
+      "entryType": "UniProtKB reviewed (Swiss-Prot)",
+      "primaryAccession": "Q86WV6",
+      "uniProtkbId": "STING_HUMAN",
+      "organism": {
+        "scientificName": "Homo sapiens",
+        "commonName": "Human",
+        "taxonId": 9606,
+        "lineage": [
+          "Eukaryota",
+          "Metazoa",
+          "Chordata",
+          "Craniata",
+          "Vertebrata",
+          "Euteleostomi",
+          "Mammalia",
+          "Eutheria",
+          "Euarchontoglires",
+          "Primates",
+          "Haplorrhini",
+          "Catarrhini",
+          "Hominidae",
+          "Homo"
+        ]
+      },
+      "proteinDescription": {
+        "recommendedName": {
+          "fullName": {
+            "evidences": [
+              {
+                "evidenceCode": "ECO:0000303",
+                "source": "PubMed",
+                "id": "18724357"
+              }
+            ],
+            "value": "Stimulator of interferon genes protein"
+          },
+          "shortNames": [
+            {
+              "evidences": [
+                {
+                  "evidenceCode": "ECO:0000303",
+                  "source": "PubMed",
+                  "id": "18724357"
+                },
+                {
+                  "evidenceCode": "ECO:0000303",
+                  "source": "PubMed",
+                  "id": "23910378"
+                },
+                {
+                  "evidenceCode": "ECO:0000303",
+                  "source": "PubMed",
+                  "id": "26669264"
+                }
+              ],
+              "value": "hSTING"
+            }
+          ]
+        },
+        "alternativeNames": [
+          {
+            "fullName": {
+              "evidences": [
+                {
+                  "evidenceCode": "ECO:0000303",
+                  "source": "PubMed",
+                  "id": "19433799"
+                }
+              ],
+              "value": "Endoplasmic reticulum interferon stimulator"
+            },
+            "shortNames": [
+              {
+                "evidences": [
+                  {
+                    "evidenceCode": "ECO:0000303",
+                    "source": "PubMed",
+                    "id": "19433799"
+                  }
+                ],
+                "value": "ERIS"
+              }
+            ]
+          },
+          {
+            "fullName": {
+              "evidences": [
+                {
+                  "evidenceCode": "ECO:0000303",
+                  "source": "PubMed",
+                  "id": "18818105"
+                },
+                {
+                  "evidenceCode": "ECO:0000303",
+                  "source": "PubMed",
+                  "id": "19285439"
+                }
+              ],
+              "value": "Mediator of IRF3 activation"
+            },
+            "shortNames": [
+              {
+                "evidences": [
+                  {
+                    "evidenceCode": "ECO:0000303",
+                    "source": "PubMed",
+                    "id": "18818105"
+                  },
+                  {
+                    "evidenceCode": "ECO:0000303",
+                    "source": "PubMed",
+                    "id": "19285439"
+                  }
+                ],
+                "value": "hMITA"
+              }
+            ]
+          },
+          {
+            "fullName": {
+              "evidences": [
+                {
+                  "evidenceCode": "ECO:0000305"
+                }
+              ],
+              "value": "Transmembrane protein 173"
+            }
+          }
+        ]
+      },
+      "genes": [
+        {
+          "geneName": {
+            "evidences": [
+              {
+                "evidenceCode": "ECO:0000312",
+                "source": "HGNC",
+                "id": "HGNC:27962"
+              }
+            ],
+            "value": "STING1"
+          },
+          "synonyms": [
+            {
+              "evidences": [
+                {
+                  "evidenceCode": "ECO:0000303",
+                  "source": "PubMed",
+                  "id": "19433799"
+                }
+              ],
+              "value": "ERIS"
+            },
+            {
+              "evidences": [
+                {
+                  "evidenceCode": "ECO:0000303",
+                  "source": "PubMed",
+                  "id": "18818105"
+                },
+                {
+                  "evidenceCode": "ECO:0000303",
+                  "source": "PubMed",
+                  "id": "19285439"
+                }
+              ],
+              "value": "MITA"
+            },
+            {
+              "evidences": [
+                {
+                  "evidenceCode": "ECO:0000303",
+                  "source": "PubMed",
+                  "id": "18724357"
+                },
+                {
+                  "evidenceCode": "ECO:0000303",
+                  "source": "PubMed",
+                  "id": "26669264"
+                }
+              ],
+              "value": "STING"
+            },
+            {
+              "evidences": [
+                {
+                  "evidenceCode": "ECO:0000312",
+                  "source": "HGNC",
+                  "id": "HGNC:27962"
+                }
+              ],
+              "value": "TMEM173"
+            }
+          ]
+        }
+      ],
+      "sequence": {
+        "value": "MPHSSLHPSIPCPRGHGAQKAALVLLSACLVTLWGLGEPPEHTLRYLVLHLASLQLGLLLNGVCSLAEELRHIHSRYRGSYWRTVRACLGCPLRRGALLLLSIYFYYSLPNAVGPPFTWMLALLGLSQALNILLGLKGLAPAEISAVCEKGNFNVAHGLAWSYYIGYLRLILPELQARIRTYNQHYNNLLRGAVSQRLYILLPLDCGVPDNLSMADPNIRFLDKLPQQTGDHAGIKDRVYSNSIYELLENGQRAGTCVLEYATPLQTLFAMSQYSQAGFSREDRLEQAKLFCRTLEDILADAPESQNNCRLIAYQEPADDSSFSLSQEVLRHLRQEEKEEVTVGSLKTSAVPSTSTMSQEPELLISGMEKPLPLRTDFS",
+        "length": 379,
+        "molWeight": 42193,
+        "crc64": "CB54D6A4D4D8E7C0",
+        "md5": "A8510899F639D884D36972DAA0006AA4"
+      }
+    },
+    {
+      "entryType": "UniProtKB reviewed (Swiss-Prot)",
+      "primaryAccession": "Q9H5V9",
+      "uniProtkbId": "STEEP_HUMAN",
+      "organism": {
+        "scientificName": "Homo sapiens",
+        "commonName": "Human",
+        "taxonId": 9606,
+        "lineage": [
+          "Eukaryota",
+          "Metazoa",
+          "Chordata",
+          "Craniata",
+          "Vertebrata",
+          "Euteleostomi",
+          "Mammalia",
+          "Eutheria",
+          "Euarchontoglires",
+          "Primates",
+          "Haplorrhini",
+          "Catarrhini",
+          "Hominidae",
+          "Homo"
+        ]
+      },
+      "proteinDescription": {
+        "recommendedName": {
+          "fullName": {
+            "evidences": [
+              {
+                "evidenceCode": "ECO:0000303",
+                "source": "PubMed",
+                "id": "32690950"
+              }
+            ],
+            "value": "STING ER exit protein"
+          },
+          "shortNames": [
+            {
+              "evidences": [
+                {
+                  "evidenceCode": "ECO:0000303",
+                  "source": "PubMed",
+                  "id": "32690950"
+                }
+              ],
+              "value": "STEEP"
+            }
+          ]
+        }
+      },
+      "genes": [
+        {
+          "geneName": {
+            "evidences": [
+              {
+                "evidenceCode": "ECO:0000312",
+                "source": "HGNC",
+                "id": "HGNC:26239"
+              }
+            ],
+            "value": "STEEP1"
+          },
+          "synonyms": [
+            {
+              "evidences": [
+                {
+                  "evidenceCode": "ECO:0000312",
+                  "source": "HGNC",
+                  "id": "HGNC:26239"
+                }
+              ],
+              "value": "CXorf56"
+            }
+          ]
+        }
+      ],
+      "sequence": {
+        "value": "MPKVVSRSVVCSDTRDREEYDDGEKPLHVYYCLCGQMVLVLDCQLEKLPMRPRDRSRVIDAAKHAHKFCNTEDEETMYLRRPEGIERQYRKKCAKCGLPLFYQSQPKNAPVTFIVDGAVVKFGQGFGKTNIYTQKQEPPKKVMMTKRTKDMGKFSSVTVSTIDEEEEEIEAREVADSYAQNAKVIEKQLERKGMSKRRLQELAELEAKKAKMKGTLIDNQFK",
+        "length": 222,
+        "molWeight": 25625,
+        "crc64": "586CD0CE472989DF",
+        "md5": "5A1942061DF03D2DC6961E048531A2DA"
+      }
+    }
+  ]
+}

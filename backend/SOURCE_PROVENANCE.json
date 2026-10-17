@@ -1,0 +1,22 @@
+{
+  "cb": {
+    "repository": "https://github.com/alicetinglab/ConformationalBiasing",
+    "commit": "e6328bc0b3b57ed095f61943732ee4df55376c48",
+    "included_source": "repo/ConformationalBiasing/utilities/cbutils.py",
+    "source_sha256": "c01d0cdd8209818fe25264539ff488bc57ea2a79d7cefe9f014736b6a5f2e7fb",
+    "license": "repo/ConformationalBiasing/LICENSE"
+  },
+  "colabdesign": {
+    "repository": "https://github.com/sokrypton/ColabDesign",
+    "commit": "27b15b11e39e0b99383975895bca9e0b0e907da1",
+    "version": "1.1.1",
+    "wheel": "vendor/colabdesign-1.1.1-py3-none-any.whl",
+    "sha256": "45111796987b0e6f4e2cb1d6cbb6ad577957c1e7b26598b74ad7b8c5760e09b8"
+  },
+  "proteinmpnn_checkpoint": {
+    "name": "v_48_020",
+    "bundled_in_colabdesign": true,
+    "sha256": "993194d9cbe9334f6c2c81bddeb1404ea831711bca8e38b591b4116060484ac3"
+  },
+  "scope": "Only source-backed selected tasks; no scientific source modifications."
+}
