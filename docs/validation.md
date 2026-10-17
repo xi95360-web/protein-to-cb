@@ -1,14 +1,14 @@
-# 验证范围
+# Validation scope
 
-初版验证日期：2026-10-17。平台：macOS arm64，Python 3.12.14，CPU。
+Initial validation date: **2026-10-17**. Platform: **macOS arm64, Python 3.12.14, CPU**.
 
-- 19 项单元测试通过，涵盖背景参考、编号转换、缺失位点、重复生物学序列、身份截断、空结果／服务故障区分，以及配置保留、备份、冲突保护和幂等安装。
-- 在本仓库路径启动两台真实 stdio MCP：上游三项工具、CB 两项工具均可发现。安装器在隔离配置目录中的真实调用通过。
-- 使用随库 LplA 结构和三变体面板，对真实 ProteinMPNN 检查点评分。全部原始分数、WT 基线、WT-relative、标准化与 bias 列和已有独立原生计算参考一致（绝对容差 1e-7，仅用于 CSV 数值往返）。
-- 公共 UniProt／RCSB 查询实际运行通过，HBA1 正确解析至 P69905。上游独立前向验证还覆盖人源 STING 解析、未给物种时保留歧义和真实无实验结构的例子。
-- 既有本地流程已完成 STING WT/G166E 的名称检索、结构核查、面板构建和真实 CB 评分；这证明执行路径可运行，不证明 STING 激活功能预测已获实验验证。
-- 后端的科学源码和固定 wheel 直接来自此前通过独立数值及接口验收的交付包；复制后核对校验和。来源和许可保留。
+- All 19 unit tests passed. They cover parental-reference consistency, residue-number mapping, missing positions, duplicate biological sequences, truncated identity searches, empty results versus service failures, configuration preservation, backups, conflict handling, and idempotent installation.
+- Both real stdio MCP servers started from the repository checkout. The three upstream tools and two CB tools were discoverable. A real installer invocation using an isolated configuration directory also passed.
+- The bundled LplA structures and three-variant panel were scored using the real ProteinMPNN checkpoint. Every raw score, WT baseline, WT-relative value, standardized value, and bias column matched the existing independent native reference calculation. Absolute tolerance was `1e-7`, allowing only numerical CSV round-trip differences in the pinned computation.
+- Live UniProt/RCSB queries passed, resolving human HBA1 to P69905. Independent upstream forward testing also covered human STING resolution, unresolved species ambiguity, and a real example with no experimental structure hits.
+- The existing local workflow completed protein-name lookup, structure checks, panel preparation, and actual CB scoring for STING WT/G166E. This demonstrates execution of the workflow; it does not experimentally validate a prediction of STING activation.
+- The backend scientific source and pinned wheel were copied from an earlier delivery that passed independent numerical and interface acceptance checks. Checksums were verified after copying, and provenance and license notices were retained.
 
-GitHub Actions 运行的是前述 19 项轻量测试。模型数值测试需另行运行 `scripts/check_runtime.py --score`；不能把 Actions 通过理解为已在所有平台复现分数、整篇论文或生物学结论。
+GitHub Actions runs the 19 lightweight tests described above. Model-level numerical checks require a separate `scripts/check_runtime.py --score` invocation. A passing Actions run does not establish numerical reproducibility on every platform, reproduction of the entire paper, or biological validity.
 
-研究使用时仍须验证目标蛋白身份、等位背景、两状态证据和突变覆盖。不同主链、构建体、面板、种子或平台的结果应有自己的来源记录和适当验证。
+For research use, verify the target identity, allele background, evidence for both states, and mutation coverage. Analyses with different backbones, constructs, panels, seeds, or platforms need their own provenance records and appropriate validation.

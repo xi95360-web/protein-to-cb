@@ -1,40 +1,39 @@
-# 从 CB 分数到功能结论
+# From CB scores to functional conclusions
 
-## 两种负分不要混淆
+## Two different meanings of a negative score
 
-`raw_stateN` 是原生 ProteinMPNN 条件 log-probability 的总和，本身通常为负，不能把负号当作功能缺失。`pmpnn_stateN = raw_mutant − raw_WT` 是同状态内突变相对于 WT 的变化：小于零表示模型相容性低于 WT。它既不是折叠自由能，也不是活性或蛋白表达量。
+`raw_stateN` is the native ProteinMPNN sum of conditional log probabilities. It is normally negative, so its sign alone does not indicate loss of function. `pmpnn_stateN = raw_mutant − raw_WT` measures the change relative to WT on the same backbone. A negative delta means lower model compatibility than WT. It is not a folding free energy, activity measurement, or expression level.
 
-如果一个 mutant 在 apo 主链上变化 −1.3、在配体结合主链上变化 −2.6，那么它在两个状态上都变差，结合态变差更多。未标准化的相对差值为 +1.3，提供相对偏向这份 apo 主链的线索；它不证明 apo 构象占比提高，更不能换算为几倍活性或结合能力。两主链覆盖长度不同，原始总分尤其不能直接跨状态比较。
+Suppose a mutant changes the score by −1.3 on an apo backbone and −2.6 on a ligand-bound backbone. Compatibility decreases in both states, with a larger decrease in the bound state. The unstandardized difference is +1.3, suggesting a relative preference for this apo backbone. It does not establish increased apo occupancy or translate into a fold change in activity or binding. Raw totals are particularly unsuitable for direct comparison when the backbones cover different numbers of residues.
 
-## WT + 一个 mutant 的标准化退化
+## Degenerate standardization with WT plus one mutant
 
-作者代码对面板两列分别以总体标准差（ddof=0）标准化，再相减。若两列分别为 `[0, −1.3]` 和 `[0, −2.6]`，标准化后都为 `[+1, −1]`，bias 因而为 `[0, 0]`。这是面板组成导致的信息丢失，不能称为“无构象效应”。追加不相关的变体也不是校准办法。
+The authors' code standardizes each column over the supplied panel using the population standard deviation (`ddof=0`), then subtracts the standardized columns. For columns `[0, −1.3]` and `[0, −2.6]`, both standardized columns become `[+1, −1]`, producing bias values `[0, 0]`. This loss of information follows from the panel composition. It does not demonstrate the absence of a conformational effect. Adding unrelated variants is not a calibration procedure.
 
-正式扩大研究时，应预先定义有科学理由的背景面板、参考构象集合和独立验证标准。用户没有要求时，不自行开展饱和扫描。当前工具保留原生标准化，并在小面板中优先报告原始／WT-relative 结果。
+An expanded study should define a scientifically justified background panel, reference-state ensemble, and independent validation criteria in advance. Do not run a saturation scan without a request. The current workflow retains native standardization while prioritizing raw and WT-relative values for small panels.
 
-## 原文预测什么
+## What the original method predicts
 
-CB 的输入是已知、具有功能意义的两个或多个参考构象。它用逆折叠模型给突变序列在各主链上的相容性评分，寻找差异显著的候选。其直接目标是构象偏向；当状态与功能存在联系时，可富集具有相应功能变化的变体。
+CB takes two or more reference conformations with functional relevance. An inverse-folding model scores variant sequences against each backbone to identify candidates with contrasting compatibility. Its direct target is conformational preference. When a state is linked to a function, the selected variants can be enriched for corresponding functional changes.
 
-原文覆盖的功能包括效应蛋白结合、受体基础信号、酶活性，以及 LplA 的目标／非目标蛋白标记偏好。它不直接产生 mutant 的新坐标，也不直接预测任意功能、EC50、kcat、Km、构象百分比或激活能垒。
+Functions examined in the original study include effector binding, basal receptor signaling, enzyme activity, and LplA on-target versus off-target protein labeling. CB does not directly generate new mutant coordinates or predict arbitrary functions, EC50, kcat, Km, conformational percentages, or activation barriers.
 
-## 作者的 assay 验证什么
+## What the authors' assays validated
 
-1. **已有突变扫描数据的回顾性验证（Fig. 2 与补充图）。** 比较预测偏向不同状态的变体群体，其实际状态相关读数是否发生预期差异，例如 K-Ras 效应蛋白结合、β2AR 基础受体激活、Src 等酶的活性相关读数。这是功能关联证据；多数不是直接测量溶液构象比例。
-2. **LplA 构象实验（Fig. 3）。** SEC-SAXS 结合开放／闭合构象混合拟合评估溶液分布，Trp 荧光作为构象变化读数。两种方法提供互相支持的结构层证据，但 SAXS 的比例来自模型拟合，不是 CB 直接输出的概率。
-3. **LplA 功能实验（Fig. 4）。** 流式检测内源蛋白的非特异性标记，配合目标蛋白标记、凝胶及活细胞成像，检验标记偏好和信噪比。Open-biased 候选整体更 promiscuous；closed-biased 候选整体减少非目标标记。部分变体的目标标记保持相近，因此不能简单概括为“open 总酶活更强”。
-4. **预测与实验的对应（Fig. 5）。** 对照构象和功能读数，并比较单结构打分与其他方法。统计富集和相关性支持筛选价值，不等于每个 mutant 都能准确推断。
+1. **Retrospective validation against existing mutational scans (Fig. 2 and supplementary figures).** The authors compared groups predicted to favor different states with measured state-related readouts, including K-Ras effector binding, basal β2AR activation, and activity-related measurements for Src and other enzymes. These provide functional associations; most do not directly measure conformational populations in solution.
+2. **LplA conformational experiments (Fig. 3).** SEC-SAXS with open/closed mixture fitting assessed solution-state distributions, while tryptophan fluorescence provided a readout of conformational change. The methods offered complementary structural evidence. SAXS population estimates came from fitting, rather than probabilities directly output by CB.
+3. **LplA functional experiments (Fig. 4).** Flow cytometry measured promiscuous labeling of endogenous proteins, alongside target-protein labeling, gel analysis, and live-cell imaging to evaluate labeling preference and signal-to-noise ratio. Open-biased candidates were generally more promiscuous; closed-biased candidates generally reduced off-target labeling. Some variants retained similar on-target labeling, so the result should not be reduced to “open means higher total enzyme activity.”
+4. **Prediction–experiment comparisons (Fig. 5).** Conformational and functional measurements were compared with CB scores and alternative methods, including single-structure scoring. Enrichment and correlation support screening utility; they do not guarantee an accurate conclusion for every mutant.
 
-原文 LplA 前瞻候选还要求至少一态分数超过 WT，再选强偏向群体；这是该实验的选择条件，不是所有 CB 应用的通用必要条件。两态均低于 WT 的个例不应被描述为同等强度的成功设计。
+For prospective LplA selection, the authors additionally required a score above WT on at least one state before choosing strongly biased groups. This was a study-specific selection criterion, not a universal requirement for CB. An individual mutant scoring below WT on both states should not be presented as equally strong evidence of successful design.
 
-## STING G166E：区分计算线索与已有实验
+## STING G166E: computational signals versus established experiments
 
-在固定单链主链上的相容性不包含 STING 二聚体／聚合界面、膜环境、定位运输和 TBK1／IRF3 信号环节。G166E 的既有原始研究显示，无 cGAMP 时的 IRF3／IFN-β 信号已经增强，支持 gain of function；研究用建模／对接提出二聚体界面作用变化，而非测得 G166E 的实验结构。
+Fixed-backbone single-chain compatibility does not represent STING dimer or polymer interfaces, membrane context, trafficking, or downstream TBK1/IRF3 signaling. The original G166E study reported enhanced IRF3/IFN-β signaling without cGAMP, supporting gain of function. Its proposed dimer-interface mechanism used modeling and docking, rather than an experimentally determined G166E structure.
 
-因此，“该单链计算给出相对 apo 线索”和“已有实验支持 G166E 基础激活增强”可以同时出现。这提示当前输入／表示未充分覆盖功能机制，不能用计算线索推翻实验。增强基础激活也不自动等于 EC50 降低或物理激活能垒降低。
+Consequently, a relative apo signal from the single-chain calculation can coexist with experimental evidence of increased basal activation. This indicates that the current inputs or representation may not capture the relevant functional mechanism; the calculation cannot overturn the experiments. Increased basal signaling also does not automatically imply a lower ligand EC50 or physical activation barrier.
 
-## 来源
+## Sources
 
-- Cavanagh et al., *Science* (2026), [CB 原文](https://doi.org/10.1126/science.adv7953)，Fig. 1–5、Discussion 与 LplA candidate-selection methods；原生计算见 [作者源码](https://github.com/alicetinglab/ConformationalBiasing)。
-- König et al., *Annals of the Rheumatic Diseases* (2017), [Familial chilblain lupus due to a gain-of-function mutation in STING](https://doi.org/10.1136/annrheumdis-2016-209841)，Fig. 2；[机构保存的作者论文副本](https://ri.conicet.gov.ar/bitstream/11336/51987/2/CONICET_Digital_Nro.3fb93f0c-62a9-49d8-a1a0-299e017ce48c_A.pdf)。
-
+- Cavanagh et al., *Science* (2026), [original CB study](https://doi.org/10.1126/science.adv7953), Fig. 1–5, Discussion, and LplA candidate-selection methods. Native computation is implemented in the [authors' repository](https://github.com/alicetinglab/ConformationalBiasing).
+- König et al., *Annals of the Rheumatic Diseases* (2017), [Familial chilblain lupus due to a gain-of-function mutation in STING](https://doi.org/10.1136/annrheumdis-2016-209841), Fig. 2; [institutionally archived paper](https://ri.conicet.gov.ar/bitstream/11336/51987/2/CONICET_Digital_Nro.3fb93f0c-62a9-49d8-a1a0-299e017ce48c_A.pdf).
