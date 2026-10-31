@@ -6,6 +6,8 @@
 
 Protein to CB connects RCSB PDB and UniProt to the authors' CB method while retaining structure provenance, sequence backgrounds, residue mappings, and scoring records. The scientific model and scoring method come from [Ting Lab's ConformationalBiasing](https://github.com/alicetinglab/ConformationalBiasing). This project provides the chat workflow, MCP wrappers, input checks, installation, and maintenance tools.
 
+Start with the [Operating guide](docs/usage.md) for a first chat example, input requirements, output files, and troubleshooting.
+
 ## Everyday use
 
 Ask naturally in Codex, or invoke `$protein-to-cb` explicitly:
